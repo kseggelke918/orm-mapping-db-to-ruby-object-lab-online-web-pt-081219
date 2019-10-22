@@ -77,9 +77,7 @@ class Student
       WHERE grade = ?
     SQL
     
-    DB[:conn].execute(sql, grade_argument).map do |row|
-      self.new_from_db(row)
-    end 
+    DB[:conn].execute(sql, grade_argument).map {|row| self.new_from_db(row)}
   end 
   
   def save
