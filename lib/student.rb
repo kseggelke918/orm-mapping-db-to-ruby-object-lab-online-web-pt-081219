@@ -74,10 +74,10 @@ class Student
   def self.all_students_in_grade_X(grade_argument)
     sql = <<-SQL
       SELECT * FROM students 
-      WHERE grade = grade_argument
+      WHERE grade = ?
     SQL
     
-    DB[:conn].execute(sql).map do |row|
+    DB[:conn].execute(sql, grade_argument).map do |row|
       self.new_from_db(row)
     end 
   end 
